@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+
+<link rel="stylesheet" media="all" type="text/css" />
+
+<!-- Tab links -->
+<div class="tab">
+
+<button class="tablink" onclick="openPage('Story', this, '')" id="defaultOpen">BBB</button>
+</div>
+
+<div id="Story" class="tabcontent">
+
+<head>
+
+<title>Merry Christmas BBB</title> 
+
+<meta charset="utf-8">
+<meta name="testfile" content="dinosaur">
+<meta name="Nhung Nguyen" content="me">
+
+<style type="text/css" media="screen">
+
+body{
+color:black;
+font-family:arial, san-serif;
+}
+
+.tablink {
+  background-color: pink;
+  color: black;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 12px;
+  font-size: 20px;
+  width: 20%;
+}
+
+.tabcontent {
+  color: black;
+  display: none;
+  padding: 100px 120px;
+  height: 100%;
+}
+
+</style>
+
+</head>
+
+</br>
+
+<body>
+<h2> <strong>BBB Christmas Story</strong></h2>
+
+<p> 
+<strong>Story begins</strong> in 1, 2, 3.
+</p>
+
+<svg  width="500" height="110">
+
+    <circle id="bophead" cx="50" cy="60" r="50" style="fill:pink;" />
+    <circle id="bopear1" cx="20" cy="20" r="15" style="fill:green;" />
+    <circle id="bopear2" cx="80" cy="20" r="15" style="fill:green;" />
+    <text id = 'bopname' x=35 y="80" fill="black">Bop</text>
+    
+    <circle id="bomhead" cx="150" cy="60" r="45" style="fill:yellow;"/>
+    <circle id="bomear1" cx="120" cy="25" r="15" style="fill:green;" />
+    <circle id="bomear2" cx="180" cy="25" r="15" style="fill:green;" />
+    <text id = 'bomname' x=135 y="85" fill="black">Bom</text>
+
+    <circle id="binhhead" cx="250" cy="60" r="40" style="fill:orange;"/>
+    <circle id="binhear1" cx="220" cy="25" r="15" style="fill:green;" />
+    <circle id="binhear2" cx="280" cy="25" r="15" style="fill:green;" />
+    <text id='binhname' x=230 y="80" fill="black">Binh</text>
+
+</svg>
+
+<p>
+Story continues.
+</p>
+
+<svg  width="300" height="110">
+
+    <circle id="bophead" cx="50" cy="60" r="50" style="fill:pink;" />
+    <circle id="bopear1" cx="20" cy="20" r="15" style="fill:red;" />
+    <circle id="bopear2" cx="80" cy="20" r="15" style="fill:red;" />
+    <text id = 'bopname' x=35 y="80" fill="black">Bop</text>
+</svg>
+
+<p>
+Story goes here.
+</p>
+
+<svg  width="300" height="60">
+
+<ellipse cx="30" cy="50" rx="10" ry="5" style="fill:yellow;stroke:black;stroke-width:1" />
+<ellipse cx="50" cy="40" rx="10" ry="5" style="fill:purple;stroke:black;stroke-width:1" />
+<ellipse cx="70" cy="30" rx="10" ry="5" style="fill:blue;stroke:black;stroke-width:1" />
+<ellipse cx="90" cy="20" rx="10" ry="5" style="fill:orange;stroke:black;stroke-width:1" />
+<ellipse cx="110" cy="10" rx="10" ry="5" style="fill:pink;stroke:black;stroke-width:1" />
+
+
+</svg>
+
+<p>
+Story goes here.
+</p>
+
+
+
+<svg  width="100" height="90">
+<path id="heart" d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z" fill='pink' />
+</svg>
+
+
+
+<p>
+Merry Christmas!
+</p>
+
+</div>
+
+<script type="text/javascript">
+
+    function openPage(pageName, elmnt, color) {
+      
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+    
+      
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+    
+      
+      document.getElementById(pageName).style.display = "block";
+    
+      
+      elmnt.style.backgroundColor = color;
+    }
+    
+    
+    document.getElementById("defaultOpen").click();
+    
+    </script>
+
+</body>
+
+<footer>
+<p>Created in Dec 2019 by Nhung Nguyen</p>
+
+</br>
+
+</footer>
+
+</html>
