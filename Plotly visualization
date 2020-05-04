@@ -1,0 +1,33 @@
+# This is a shortened example of how to use plotly to create interactive graph for more than 2 variables
+# import package
+import plotly
+import plotly.graph_objs as go
+
+# Sign in to plotply
+py.sign_in('username', 'passcode')
+plotly.offline.init_notebook_mode() 
+
+# Reference source: the code below was based on example from plotly website: https://plot.ly/python/multiple-axes/
+# create a function to create interactive graph between 3 variables
+def plot3yaxis(df1,df2,df3, variable_4):
+  for i in range (0,need to specify):
+    year = [1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,
+    2009,2010,2011,2012,2013,2014]
+    variable_1 = go.Scatter(x=year, y= np.array(df1.loc[state]), name= 'variable1')
+    variable_2 = go.Scatter(x=year, y=np.array(df2.loc[state]), name = 'variable2',yaxis='y2')
+    variable_3 = go.Scatter(x=year, y=np.array(df3.loc[state]), name='variable3',yaxis='y3')
+    data = [variable_1, variable_2, variable_3]
+    layout = go.Layout(
+    title= state + '--1999 to 2014', width=850,
+    # xaxis=dict(domain=[0.3, 0.7]), #this is optional and depends on the data scale
+    yaxis=dict(title='Title',titlefont=dict(color='blue'),tickfont=dict(color='blue')),
+    yaxis2=dict(title='Title',titlefont=dict(color='darkorange'),tickfont=dict(color='darkorange'),
+    anchor='free', overlaying='y',side='left',position=0.15),
+    yaxis3=dict(title='Title',titlefont=dict(color ='green'), tickfont=dict(color='green'),anchor='x',overlaying='y',side ='right')
+    )
+    fig = go.Figure(data=data, layout=layout)
+    return py.iplot(fig, validate=False, filename='Filename')
+    
+# to run the function
+variable_4 = 'need to specify'
+plot3yaxis(df1, df2, df3, variable_4)
