@@ -1,0 +1,41 @@
+# load the mosaic package
+# Create a combined graph that include stacked bar chart + line graph
+
+library(mosaic)
+
+# load the data
+SS <- read_csv("Desktop/SS.csv")
+data <- read_csv("destination")
+
+# using the reshape2 package 
+library(reshape2)
+
+# using melt command to create categorical data
+newSS <- melt(SS, id.vars = "Year")
+
+# create different level for categorical variables
+newSS$variable <- factor(newSS$variable, levels = c("level1", "level2", "level3"))
+
+# load ggthemes package 
+library(ggthemes)
+
+# first create the stacked bar chart, add second axis, and then adding theme
+ggplot() + geom_bar(data = newSS, aes(x = Year, y = value, fill = variable), width = 0.5, stat="identity", alpha = 0.8) +
+  scale_fill_manual(values = c("darkorange", "darkred", "darksalmon"), 
+              guide = guide_legend(title = "Casualties*due to:")) +
+  scale_x_continuous(breaks=seq(1970,2012, by=2)) + 
+  scale_y_continuous(sec.axis = sec_axis(~.*0.001, 
+                name = "Title", 
+                breaks = seq(0,3,0.5)), limits = c(0,3000), 
+                breaks = seq(0,3000,by = 500)) + theme_hc()
+
+# adding a line
+g <- last_plot() + geom_line(data = data, aes(x=Year, y = Passenger*1000), stat = "identity", position = "identity", 
+na.rm = T, col = "deepskyblue",size = 1.5) + ylab (NULL)
+
+# adding titles and color for the right axis
+g + labs(title = "Title", subtitle="Subtitle") + 
+theme(plot.title = element_text(face="bold")) + 
+theme(axis.text.y = element_text(color = "peru"),
+  axis.title.y.right = element_text(color = "deepskyblue"),
+  axis.text.y.right = element_text(color = "deepskyblue")) + theme(legend.position="top")
