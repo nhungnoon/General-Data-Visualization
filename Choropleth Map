@@ -1,0 +1,25 @@
+# Set the color scale for the choropleth map
+scale = [[0.0, 'rgb(223,221,228)'], 
+         [0.2, 'rgb(199,199,216)'], 
+         [0.4, 'rgb(169,170,201)'],
+         [0.6, 'rgb(139,135,181)'],
+         [0.8, 'rgb(98,88,158)'],
+         [1.0, 'rgb(63,20,122)']]
+
+# Create a function to map individual year's median income
+def income_map(year):
+    data = [dict(type='choropleth', colorscale=scale, 
+            locations=income_merge['stateabrev'],z=income_merge[year].astype(float),
+                locationmode='USA-states',
+                text=income_merge['stateabrev'],
+                hoverinfo='location+z',
+                marker=dict(line=dict(color='rgb(255,255,255)', width=2)),
+                colorbar=dict(title='Median Income--' + str(year)))]
+
+    layout = dict(title='Median Income--' + str(year),
+                  geo=dict(scope='USA', projection=dict(type='albers usa'),
+                  showlakes=True,
+                  lakecolor='rgb(95,145,237)'))
+
+    fig = dict(data=data, layout=layout)
+    return py.iplot(fig, validate=False, filename='Median Income--' + str(year))
