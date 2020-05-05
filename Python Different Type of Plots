@@ -1,0 +1,77 @@
+### Plot bar graph with notes and highlights within graph
+
+# Use seaborn to graph 
+sns.set(rc={'figure.figsize':(10,10)}) #set figure size
+sns.set(style="white") #set the background style
+
+# Create the bar plot and called it "a" 
+a =sns.barplot(x='Verification', y='Hospital', data=df, palette="Blues_d") 
+
+# Create a bold title
+a.set_title('Title', weight="bold", size =16)
+
+# Set x-axis limit and delete y label
+a.set(xlim=(0, 14), ylabel="")
+
+# Set xlabel and ylabels
+a.set_xlabel("Number of Verifications", size = 13)
+a.tick_params(axis="y", labelsize=14, colors = "black")
+
+# Hightlight certain labels
+plt.gca().get_yticklabels()[0].set_fontweight('bold')
+plt.gca().get_yticklabels()[0].set_fontsize(18)
+
+# Create value labels for graphs
+test = df['Verification']
+for index, value in enumerate(test): 
+    label = format(int(value))    
+    a.annotate(label, xy=(value+0.1, index+0.1), color='black',size=15,weight='bold')
+
+# Add notes to the graphs    
+note = "*Notes\n Notes \n Notes."
+a.annotate(note, xy=(5.5,12), color='navy',size=14) #adding notes at the bottom of the graph
+
+
+----------------------
+
+### Plot Multiple Histograms
+# Create a new dataset to plot a few of the attributes.
+input_data= df_boston[['By_River','Age','PT_Ratio','LSTAT']]
+
+# Use histogram to show the distribution of input_data variables (each on a separate axis)
+plt.rcParams["figure.figsize"] = (9,7) #set the figure size so they won't be overlapped
+input_data.hist(grid=False, bins = 15, color = "steelblue") 
+
+# Use a single histogram to show the distribution of input_data variables
+input_data.plot(kind='hist', bins=15, alpha=0.6, grid = False) 
+
+
+
+----------------------
+# Use Searborn to plot one variable against another as a function of median price. Also show a line of best fit. 
+
+# First create a regression plot and called it "a"
+
+# For the regression plot: confidence interval is 75, scatterpoint translucents is 0.8, the line is red to be easily distinguish 
+a = sns.regplot(x="X", y="y", data=data, ci = 75, scatter_kws={'s':80, "alpha":0.8}, 
+                line_kws={"linewidth":2, "color": "red"}, order=1)
+
+# Adjust title and labels of the regression plot
+a.set_title('Regplot', fontsize =15, weight="bold") 
+a.set_ylabel('LSTAT (%)', fontsize =13, weight="bold")
+a.set_xlabel("Label", fontsize =13, weight="bold") 
+
+
+----------------------
+
+### Plot a bar chart with notes
+
+fig,ax=plt.subplots()
+df_sort = df_boston.groupby('By_River')['By_River'].count() 
+df_sort.plot(kind='bar', rot =0, ax=ax)
+
+# Adding text on top the bar graph for specific values
+ax.text(0.85,40,'By River-' + str(df_sort[1]), fontsize = 13, weight = "bold") 
+ax.text(-0.25,395,'Not By River-' + str(df_sort[0]), fontsize = 13, weight = "bold")
+
+
